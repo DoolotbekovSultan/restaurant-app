@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Category {
+  PIZZA
+  BURGERS
+  SUSHI
+  DRINKS
+  DESSERTS
+  NATIONAL
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  DELIVERING
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CARD
+  CASH
+  ONLINE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders    Order[]
+  favorites Favorite[]
+  reviews   Review[]
+}
+
+model Dish {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  image       String
+  category    Category
+  rating      Float    @default(4.5)
+  popularity  Int      @default(0)
+  isPopular   Boolean  @default(false)
+  isPromo     Boolean  @default(false)
+  promoPrice  Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+  favorites  Favorite[]
+  reviews    Review[]
+}
+
+model Order {
+  id            String        @id @default(cuid())
+  userId        String?
+  customerName  String
+  phone         String
+  address       String
+  comment       String?
+  paymentMethod PaymentMethod
+  status        OrderStatus   @default(PENDING)
+  total         Float
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user  User?       @relation(fields: [userId], references: [id])
+  items OrderItem[]
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  orderId  String
+  dishId   String
+  quantity Int
+  price    Float
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  dish  Dish  @relation(fields: [dishId], references: [id])
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  dishId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dish Dish @relation(fields: [dishId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, dishId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String?
+  dishId    String?
+  author    String
+  rating    Int
+  text      String
+  avatar    String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+  dish Dish? @relation(fields: [dishId], references: [id])
+}
+
+model Promo {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  discount    Int
+  image       String
+  validUntil  DateTime
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}

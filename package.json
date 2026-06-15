@@ -1,0 +1,10 @@
+{
+  "name": "aurum-restaurant",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "db:up": "docker compose up -d",
+    "db:setup": "cd backend && npm run db:push && npm run db:seed"
+  }
+}

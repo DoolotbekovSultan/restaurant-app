@@ -1,0 +1,181 @@
+import type { Dish, Review, Promo, Faq, Stats } from './types';
+
+export const mockDishes: Dish[] = [
+  {
+    id: '1',
+    name: 'Трюфельная Маргарита',
+    description: 'Тонкое тесто, соус из томатов Сан-Марцано, моцарелла ди буфала, чёрный трюфель и свежий базилик',
+    price: 1290,
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80',
+    category: 'PIZZA',
+    rating: 4.9,
+    popularity: 2840,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '2',
+    name: 'Пепперони Премиум',
+    description: 'Пикантная салями, моцарелла, орегано и фирменный томатный соус',
+    price: 890,
+    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80',
+    category: 'PIZZA',
+    rating: 4.7,
+    popularity: 3200,
+    isPopular: true,
+    isPromo: true,
+    promoPrice: 690,
+  },
+  {
+    id: '3',
+    name: 'Wagyu Smash Burger',
+    description: 'Двойная котлета из мраморной говядины Wagyu, карамелизированный лук, трюфельный айоли',
+    price: 1490,
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+    category: 'BURGERS',
+    rating: 4.9,
+    popularity: 4100,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '4',
+    name: 'Сет «Император»',
+    description: '24 шт: филадельфия, дракон, унаги, тунец, лосось. Идеально для двоих',
+    price: 2890,
+    image: 'https://images.unsplash.com/photo-1579584425558-c3ce17fd4351?w=800&q=80',
+    category: 'SUSHI',
+    rating: 4.9,
+    popularity: 2200,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '5',
+    name: 'Филадельфия Классик',
+    description: 'Лосось, сливочный сыр, огурец, 8 штук',
+    price: 690,
+    image: 'https://images.unsplash.com/photo-1617196034183-42106e7b0bde?w=800&q=80',
+    category: 'SUSHI',
+    rating: 4.8,
+    popularity: 3500,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '6',
+    name: 'Тирамису Авторский',
+    description: 'Классический итальянский десерт с маскарпоне, савоярди и эспрессо',
+    price: 490,
+    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80',
+    category: 'DESSERTS',
+    rating: 4.9,
+    popularity: 2100,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '7',
+    name: 'Матча Латте',
+    description: 'Японский матча премиум-класса, овсяное молоко, мед, 400 мл',
+    price: 390,
+    image: 'https://images.unsplash.com/photo-1515823064-d6e0c046c28f?w=800&q=80',
+    category: 'DRINKS',
+    rating: 4.8,
+    popularity: 980,
+    isPopular: true,
+    isPromo: false,
+  },
+  {
+    id: '8',
+    name: 'Хачапури по-аджарски',
+    description: 'Лодочка из дрожжевого теста с сулугуни, яйцом и сливочным маслом',
+    price: 590,
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80',
+    category: 'NATIONAL',
+    rating: 4.7,
+    popularity: 2200,
+    isPopular: true,
+    isPromo: false,
+  },
+];
+
+export const mockReviews: Review[] = [
+  {
+    id: '1',
+    author: 'Мария К.',
+    rating: 5,
+    text: 'Невероятный вкус! Wagyu бургер — лучший в городе. Доставили за 30 минут, всё горячее.',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    author: 'Дмитрий С.',
+    rating: 5,
+    text: 'Сет «Император» — это произведение искусства. Свежайшая рыба, идеальный рис.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: '3',
+    author: 'Елена В.',
+    rating: 5,
+    text: 'Трюфельная пицца — мой фаворит. Интерьер ресторана отражается в качестве блюд.',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80',
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export const mockPromos: Promo[] = [
+  {
+    id: '1',
+    title: 'Скидка 20% на первый заказ',
+    description: 'Используйте промокод AURUM20 при оформлении',
+    discount: 20,
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+    validUntil: '2026-12-31',
+  },
+  {
+    id: '2',
+    title: 'Бесплатная доставка',
+    description: 'При заказе от 1500 ₽ доставка бесплатно',
+    discount: 0,
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    validUntil: '2026-12-31',
+  },
+];
+
+export const mockFaqs: Faq[] = [
+  {
+    id: '1',
+    question: 'Какое время доставки?',
+    answer: 'Среднее время доставки — 35-45 минут в зависимости от загруженности и расстояния.',
+  },
+  {
+    id: '2',
+    question: 'Минимальная сумма заказа?',
+    answer: 'Минимальная сумма заказа — 500 ₽. При заказе от 1500 ₽ доставка бесплатная.',
+  },
+  {
+    id: '3',
+    question: 'Какие способы оплаты доступны?',
+    answer: 'Мы принимаем оплату картой онлайн, картой курьеру и наличными при получении.',
+  },
+];
+
+export const mockStats: Stats = {
+  customers: 12500,
+  orders: 48000,
+  rating: 4.9,
+  deliveryTime: 35,
+};
+
+export const categoryLabels: Record<string, string> = {
+  PIZZA: 'Пицца',
+  BURGERS: 'Бургеры',
+  SUSHI: 'Суши',
+  DRINKS: 'Напитки',
+  DESSERTS: 'Десерты',
+  NATIONAL: 'Национальная кухня',
+};
